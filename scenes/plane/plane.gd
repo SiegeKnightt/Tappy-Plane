@@ -3,7 +3,6 @@ extends CharacterBody2D
 const GRAVITY: float = 800.0
 
 @export var jumpSpeed: float = -500.0
-
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
