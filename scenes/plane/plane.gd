@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const GRAVITY: float = 800.0
 
-var jumpSpeed: float = -400.0
+@export var jumpSpeed: float = -500.0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
@@ -15,13 +15,19 @@ func _physics_process(delta):
 	# Adds gravity
 	velocity.y += GRAVITY * delta
 	
+	# Plane movement
+	fly()
+	
+	# Checks if plane hits top/bottom
 	if (is_on_floor() == true || is_on_ceiling() == true):
 		die()
 	
-	if (Input.is_action_just_pressed("jump")):
-		velocity.y += jumpSpeed
-	
 	move_and_slide()
+
+# Movement function for the plane
+func fly() -> void:
+	if (Input.is_action_just_pressed("jump") == true):
+		velocity.y += jumpSpeed
 
 # Stops animation and physics when plane hits ground/ceiling
 func die() -> void:
