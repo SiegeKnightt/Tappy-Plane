@@ -5,6 +5,7 @@ const GRAVITY: float = 800.0
 @export var jumpSpeed: float = -500.0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +28,7 @@ func _physics_process(delta):
 # Movement function for the plane
 func fly() -> void:
 	if (Input.is_action_just_pressed("jump") == true):
+		animation_player.play("power")
 		velocity.y += jumpSpeed
 
 # Stops animation and physics when plane hits ground/ceiling
